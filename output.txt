@@ -1,47 +1,29 @@
-Sure, Here's a simple outline for a middle school math curriculum about integer factorization:
+Draft Curriculum
 
-Title: Understanding Integer Factorization
+Subject: Mathematics
 
-I. Introduction to Integer Factorization
-    A. Definition of Integer Factorization
-    B. Importance and Application of Integer Factorization
-    
-II. Basic Concepts
-    A. Understanding Integers
-    B. Prime and Composite Numbers
-    C. Multiples and Factors
+Topic: Prime Numbers
 
-III. Prime Factorization
-    A. Concept of Prime Factorization
-    B. Steps in Finding the Prime Factorization of a Number
-    C. Practice Problems
+Introduction:
+In mathematics, prime numbers play a crucial role as they are the building blocks for all other numbers. A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. They are the fundamental components of the number system and have unique properties that distinguish them from other numbers.
 
-IV. Factor Trees
-    A. Introduction to Factor Trees
-    B. How to Create a Factor Tree
-    C. Practice Problems
+Key Concepts:
+1. Definition of Prime Numbers: A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+2. Sieve of Eratosthenes: An ancient algorithm used to find all prime numbers up to a given limit.
+3. Prime Factorization: Breaking down a number into its prime factors, which are prime numbers that multiply together to give the original number.
+4. Distribution of Prime Numbers: Prime numbers are infinite and become less frequent as numbers get larger, following certain patterns like the Prime Number Theorem.
 
-V. The Fundamental Theorem of Arithmetic
-    A. Understanding the Theorem
-    B. Application of the Theorem in Integer Factorization
-    C. Practice Problems
+Applications:
+1. Cryptography: Prime numbers are essential in modern encryption techniques to secure data and communications.
+2. Number Theory: Prime numbers are at the heart of many mathematical proofs and conjectures.
+3. Computer Science: Prime numbers are used in algorithms and data structures for efficient computations.
 
-VI. Integer Factorization Algorithms
-    A. Introduction to Factorization Algorithms
-    B. Examples of Basic Algorithms (e.g., Trial Division, Wheel Factorization)
-    C. Practice Problems
+Activities:
+1. Sieve of Eratosthenes Hands-On Activity: Students can physically sieve out prime numbers up to a certain range to understand the concept.
+2. Prime Factorization Game: A game where students compete to factorize numbers into their prime components in a race against time.
+3. Real-World Applications Research: Students can explore how prime numbers are used in cryptography, number theory, and computer science and present their findings.
 
-VII. Review and Assessment
-    A. Recap of Key Concepts and Skills
-    B. Assessment Test
-    C. Discussion of Test Answers
-
-VIII. Real-life Applications of Integer Factorization
-    A. Use in Cryptography
-    B. Other Practical Applications 
-
-IX. Conclusion
-    A. Summary of the Course
-    B. Encouragement for Further Study
-
-Each section should include a mix of lectures, interactive activities, and practice problems to ensure students understand the concepts. It's also beneficial to include real-life applications so students can see the relevance of what they're learning.
+Assessment:
+1. Quiz on Prime Numbers: Assess students' understanding of prime number properties, factorization, and applications.
+2. Problem-Solving Tasks: Present students with real-world problems that involve prime numbers and evaluate their problem-solving skills.
+3. Project Presentation: Have students work on a

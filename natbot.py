@@ -75,6 +75,7 @@ class RunTask:
             n=1,  # Assuming you want only one response
             max_tokens=50
         )
+        print(prompt)
         return response.choices[0]["message"]["content"]
     
 
@@ -133,7 +134,8 @@ class RunTask:
                     print("Rate Limit Exceeded. Retrying in 5 seconds...")
                     time.sleep(5)
             return 
-            
+        
+        time.sleep(2)
         html_content = self._crawler.page.content()
         soup = BeautifulSoup(html_content, 'html.parser')
         plain_text = soup.get_text()
@@ -142,6 +144,7 @@ class RunTask:
             f.write(f"Command: {cmd}\n")
             f.write(f"URL: {url}\n")
             f.write("Page Content:\n")
+            plain_text = plain_text.replace("\n", "")
             f.write(plain_text + "\n")
             f.write("=" * 50 + "\n")  
 
@@ -151,14 +154,15 @@ class RunTask:
         # if there is alink then go directly to the link
         #objectives = ["I am middle school teacher. Write math curriculum about integer factorization", "write the words 'hello' to texteditor", "find donal trump's wikipedia", "Make a reservation for 2 at 7pm at bistro vida in menlo park", "go to google docs"]
         objectives = [
-            "Find Relevant Information on middle school science"
+            "Find Relevant Information on middle school science on prime number math on wikipedia",
+            "Draft curriculum using information"
         ]
         i = 0
         objective = objectives[0]
         gpt_cmd = ""
         prev_cmd = ""
         query = "+".join(objective.split(" "))
-        self._crawler.go_to_page("https://www.google.com/")
+        self._crawler.go_to_page("https://google.com")
         
         try:
             while True:
@@ -184,7 +188,7 @@ class RunTask:
                     response = q
                 if response == "TRUE":
                     i = i + 1
-                    objective = objectives[i + 1]
+                    objective = objectives[i]
 
                 while True:
                     try:

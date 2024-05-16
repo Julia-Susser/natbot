@@ -4,9 +4,9 @@ You are an agent controlling a browser. You are given:
 	(2) the URL of your current web page
 	(3) a simplified text description of what's visible in the browser window (more on that below)
 
-Respond with whether you have completed the task. 
+Respond with whether you have completed the task. Use the broswer content to deduce whether the instruction has been completed. Be very precise.
 
-If the last command was a search then most likely you will want to repsond with FALSE.
+If the last command was a SEARCH or GO then most likely you will want to repsond with FALSE. If the url is https://www.google.com/, it is also most likely FALSE.
 
 Here are some examples:
 
@@ -14,56 +14,68 @@ EXAMPLE 1:
 ==================================================
 CURRENT BROWSER CONTENT:
 ------------------
-<text id=0>Sign in</text>
-<text id=1>Use your Google Account</text>
-<input id=2 email Email or phone>juliasusser@gmail.com</input>
-<text id=3>Email or phone</text>
-<button id=4>Forgot email?</button>
-<text id=5>Not your computer? Use Guest mode to sign in privately.</text>
-<link id=6>Learn more about using Guest mode</link>
-<button id=7>Next</button>
-<button id=8>Create account</button>
-<text id=9>English (United States)</text>
-<link id=10>Help</link>
-<link id=11>Privacy</link>
-<link id=12>Terms</link>
-<text id=13>Sign in Use your Google Account</text>
+<link id=0>About</link>
+<link id=1>Store</link>
+<link id=2 aria-label="Gmail ">Gmail</link>
+<link id=3 aria-label="Search for Images ">Images</link>
+<link id=4 aria-label="Google apps"/>
+<link id=5 aria-label="Sign in">Sign in</link>
+<link id=6 type="image/webp" alt="Celebrating Hank Adams" title="Celebrating Hank Adams"/>
+<button id=7 title="Share"/>
+<button id=8 Search by voice/>
+<button id=9 Search by image/>
+<button id=10 Google Search/>
+<button id=11 I'm Feeling Lucky/>
+<link id=12>Advertising</link>
+<link id=13>Business</link>
+<link id=14>How Search works</link>
+<link id=15>Our third decade of climate action: join us</link>
+<link id=16>Privacy</link>
+<link id=17>Terms</link>
+<text id=18>Settings</text>
 ------------------
-OBJECTIVE: Sign into google 
+
+OBJECTIVE: Find Relevant Information on middle school science on prime number math on wikipedia
 CURRENT URL: https://www.google.com/
-RESPONSE: FALSE
+PREVIOUS COMMAND: 
+YOUR RESPONSE: FALSE
+
 ==================================================
 
 EXAMPLE 2:
 ==================================================
 CURRENT BROWSER CONTENT:
 ------------------
-<link id=1>About</link>
-<link id=2>Store</link>
-<link id=3>Gmail</link>
-<link id=4>Images</link>
-<link id=5>(Google apps)</link>
-<link id=6>Sign in</link>
-<img id=7 alt="(Google)"/>
-<input id=8 alt="Search"></input>
-<button id=9>(Search by voice)</button>
-<button id=10>(Google Search)</button>
-<button id=11>(I'm Feeling Lucky)</button>
-<link id=12>Advertising</link>
-<link id=13>Business</link>
-<link id=14>How Search works</link>
-<link id=15>Carbon neutral since 2007</link>
-<link id=16>Privacy</link>
-<link id=17>Terms</link>
-<text id=18>Settings</text>
+<text id=0>Seconds left: 120</text>
+<text id=1>Score: 0</text>
+<text id=2>3 × 71</text>
+<text id=3>=</text>
+<input id=4/>
+----------------
 ------------------
-OBJECTIVE: Go to google.com
-CURRENT URL: https://www.google.com/
+OBJECTIVE: Go to arethmetic website.
+CURRENT URL: https://arithmetic
 RESPONSE: TRUE
 
 ==================================================
-
 EXAMPLE 3:
+==================================================
+CURRENT BROWSER CONTENT:
+------------------
+<text id=0>Seconds left: 120</text>
+<text id=1>Score: 0</text>
+<text id=2>3 × 71</text>
+<text id=3>=</text>
+<input id=4/>
+----------------
+------------------
+OBJECTIVE: Find Relevant Information on middle school science on prime number math on wikipedia
+CURRENT URL: https://arithmetic
+RESPONSE: FALSE
+
+==================================================
+
+EXAMPLE 4:
 ==================================================
 CURRENT BROWSER CONTENT:
 ------------------
