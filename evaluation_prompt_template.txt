@@ -101,6 +101,51 @@ CURRENT URL: https://www.opentable.com/
 RESPONSE: FALSE
 ==================================================
 
+
+EXAMPLE 4
+
+<link id=33/>
+<link id=34>About featured snippets</link>
+<text id=35>People also ask</text>
+<text id=36>What are the prime numbers in science?</text>
+<text id=37>What are the prime numbers for school?</text>
+<text id=38>What does prime number mean in science?</text>
+<text id=39>What is a prime number in math for 5th grade?</text>
+<text id=40>Feedback</text>
+<link id=41>List of prime numbers Wikipedia https://en.wikipedia.org  › wiki › List_of_prime_numbers</link>
+<text id=42>Wikipedia</text>
+<text id=43>https://en.wikipedia.org</text>
+<text id=44>› wiki › List_of_prime_numbers</text>
+<text id=45>This is a list of articles about</text>
+<text id=46>prime numbers</text>
+<text id=47>. A</text>
+<text id=48>prime number</text>
+<text id=49>(or prime) is a natural number greater than 1 that has no positive divisors other than 1 and ...</text>
+<text id=50></text>
+<link id=51>The first 1000 prime numbers</link>
+<text id=52>· </text>
+<link id=53>Lists of primes by type</link>
+<text id=54>· </text>
+<link id=55>Emirps</link>
+<text id=56>·</text>
+<link id=57>Prime quadruplets</link>
+<text id=58>Missing:</text>
+<text id=59>school</text>
+<text id=60> Show results with:</text>
+<link id=61>school</link>
+<link id=62>Prime number theorem Wikipedia https://en.wikipedia.org  › wiki › Prime_number_theorem</link>
+<text id=63>Wikipedia</text>
+<text id=64>https://en.wikipedia.org</text>
+<text id=65>› wiki › Prime_number_theorem</text>
+------------------
+
+OBJECTIVE: Find Relevant Information on middle school science on prime number math on wikipedia
+CURRENT URL: https://www.google.com/search?q=school+science+prime+number+math+wikipedia%22
+PREVIOUS COMMAND: SEARCH "middle school science prime number math wikipedia"
+YOUR RESPONSE (TRUE/FALSE):FALSE
+
+==================================================
+
 The current browser content, objective, and current URL follow. Reply with whether the objective task was completed or not below.
 
 CURRENT BROWSER CONTENT:
