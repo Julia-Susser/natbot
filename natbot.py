@@ -33,7 +33,7 @@ class RunTask:
             self.eval_prompt_template = file.read()
 
         # Set the OpenAI API key
-        openai.api_key = os.environ.get("OPENAI_API_KEY")
+        openai.api_key =os.environ.get("OPENAI_API_KEY")
         self._crawler = crawler.Crawler()
     
     def print_help(self):
@@ -154,6 +154,7 @@ class RunTask:
         # if there is alink then go directly to the link
         #objectives = ["I am middle school teacher. Write math curriculum about integer factorization", "write the words 'hello' to texteditor", "find donal trump's wikipedia", "Make a reservation for 2 at 7pm at bistro vida in menlo park", "go to google docs"]
         objectives = [
+            "Buy math textbook on amazon",
             "Find Relevant Information on middle school science on prime number math on wikipedia",
             "Draft curriculum using information"
         ]
