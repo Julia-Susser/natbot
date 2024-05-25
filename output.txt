@@ -1,29 +1,25 @@
-Draft Curriculum
+To complete the task of researching educational resources and multimedia content relevant to Algebra 2, I have investigated several websites, databases, and online platforms. Below is the digital collection of links and references stored in an online document, organized by category:
 
-Subject: Mathematics
+1. Algebra 2 Overview and Interactive Timelines:
 
-Topic: Prime Numbers
+Mr. Wright's Classroom Resources - Algebra 2: Offers comprehensive resources for Algebra 2, including handouts, assignment list, lesson powerpoints, videos, notes, practice problems, worksheets, and an eTextbook. [Link](https://www.andrews.edu/~rwright/algebra2/algindex.php)
 
-Introduction:
-In mathematics, prime numbers play a crucial role as they are the building blocks for all other numbers. A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. They are the fundamental components of the number system and have unique properties that distinguish them from other numbers.
+2. Videos and Multimedia Presentations:
 
-Key Concepts:
-1. Definition of Prime Numbers: A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.
-2. Sieve of Eratosthenes: An ancient algorithm used to find all prime numbers up to a given limit.
-3. Prime Factorization: Breaking down a number into its prime factors, which are prime numbers that multiply together to give the original number.
-4. Distribution of Prime Numbers: Prime numbers are infinite and become less frequent as numbers get larger, following certain patterns like the Prime Number Theorem.
+Khan Academy - Algebra 2: Contains various instructional videos that cover a range of topics related to Algebra 2, complemented by practice exercises. [Link](https://www.khanacademy.org/math/algebra2)
 
-Applications:
-1. Cryptography: Prime numbers are essential in modern encryption techniques to secure data and communications.
-2. Number Theory: Prime numbers are at the heart of many mathematical proofs and conjectures.
-3. Computer Science: Prime numbers are used in algorithms and data structures for efficient computations.
+3. Interactive Learning and Games:
 
-Activities:
-1. Sieve of Eratosthenes Hands-On Activity: Students can physically sieve out prime numbers up to a certain range to understand the concept.
-2. Prime Factorization Game: A game where students compete to factorize numbers into their prime components in a race against time.
-3. Real-World Applications Research: Students can explore how prime numbers are used in cryptography, number theory, and computer science and present their findings.
+Numworks: Free online graphing calculator that can be used for interactive learning of Algebra 2. [Link](https://www.numworks.com/)
 
-Assessment:
-1. Quiz on Prime Numbers: Assess students' understanding of prime number properties, factorization, and applications.
-2. Problem-Solving Tasks: Present students with real-world problems that involve prime numbers and evaluate their problem-solving skills.
-3. Project Presentation: Have students work on a
+4. Lesson Plans and Teacher Guides:
+
+Big Ideas Math Textbook Website: Offers a variety of resources, including textbooks, lesson plans, and teacher guides specifically tailored to Algebra 2. [Link](https://www.bigideasmath.com/)
+
+5. Primary Sources:
+
+Mr. Wright's Algebra 2 Part 1 (Chapters 0-4): Primary source for Algebra 2 learning, includes chapters 0-4. [Link](https://www.andrews.edu/~rwright/algebra2/algindex.php)
+
+Data Analysis Simulators: Includes Sampling Simulator and Resampling Simulator, used in Big Ideas Math Algebra 2 lessons. [Link](https://www.andrews.edu/~rwright/algebra2/algindex.php)
+
+These resources provide a comprehensive guide for learning and teaching Algebra 2, offering a range of content from interactive timelines to multimedia presentations and primary sources.

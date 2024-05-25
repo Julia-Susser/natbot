@@ -68,7 +68,7 @@ class Crawler:
 		start = time.time()
 
 		page_state_as_text = []
-
+		page.wait_for_load_state('networkidle')
 		device_pixel_ratio = page.evaluate("window.devicePixelRatio")
 		if platform == "darwin" and device_pixel_ratio == 1:  # lies
 			device_pixel_ratio = 2
