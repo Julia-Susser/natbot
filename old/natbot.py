@@ -9,6 +9,9 @@ from playwright.sync_api import sync_playwright
 import time
 from sys import argv, exit, platform
 import openai
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 import os
 import crawler
 from bs4 import BeautifulSoup
@@ -33,9 +36,8 @@ class RunTask:
             self.eval_prompt_template = file.read()
 
         # Set the OpenAI API key
-        openai.api_key =os.environ.get("OPENAI_API_KEY")
         self._crawler = crawler.Crawler()
-    
+
     def print_help(self):
         print(
             "(g) to visit url\n(u) scroll up\n(d) scroll down\n(c) to click\n(t) to type\n"
@@ -47,54 +49,48 @@ class RunTask:
         prompt = prompt.replace("$url", url[:100])
         prompt = prompt.replace("$previous_command", previous_command)
         prompt = prompt.replace("$browser_content", browser_content[:4500])
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.5,
-            n=1,  # Assuming you want only one response, not 3 as before
-            max_tokens=50
-        )
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.5,
+        n=1,  # Assuming you want only one response, not 3 as before
+        max_tokens=50)
 
-        return response.choices[0]["message"]["content"]
+        return response.choices[0].message.content
 
     def evaluate_completion(self, objective, url, previous_command, browser_content):
         prompt = self.eval_prompt_template.replace("$objective", objective)
         prompt = prompt.replace("$url", url[:100])
         prompt = prompt.replace("$previous_command", previous_command)
         prompt = prompt.replace("$browser_content", browser_content[:4500])
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.5,
-            n=1,  # Assuming you want only one response
-            max_tokens=50
-        )
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0.5,
+        n=1,  # Assuming you want only one response
+        max_tokens=50)
         print(prompt)
-        return response.choices[0]["message"]["content"]
-    
+        return response.choices[0].message.content
+
 
     def write_output(self,objective, browser_content):
-        response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": "write an output to finish "+objective+" using "+browser_content[:100]},
-                ],
-                temperature=0.5,
-                n=1,  # Assuming you want only one response
-                max_tokens=400
-        )
+        response = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "write an output to finish "+objective+" using "+browser_content[:100]},
+        ],
+        temperature=0.5,
+        n=1,  # Assuming you want only one response
+        max_tokens=400)
         print(response)
-        w = response.choices[0]["message"]["content"]
+        w = response.choices[0].message.content
         file = open("output.txt", "w")
         file.write(str(w))
-        
+
     def run_cmd(self, cmd, objective):
         # You will need to define or pass _crawler instance appropriately
         cmd = cmd.split("\n")[0].strip()
@@ -130,11 +126,11 @@ class RunTask:
                 try:
                     response = self.write_output(objective, plain_text)
                     break
-                except openai.error.RateLimitError as e:
+                except openai.RateLimitError as e:
                     print("Rate Limit Exceeded. Retrying in 5 seconds...")
                     time.sleep(5)
             return 
-        
+
         time.sleep(2)
         html_content = self._crawler.page.content()
         soup = BeautifulSoup(html_content, 'html.parser')
@@ -149,7 +145,7 @@ class RunTask:
             f.write("=" * 50 + "\n")  
 
         time.sleep(2)
-        
+
     def run(self):
         # if there is alink then go directly to the link
         #objectives = ["I am middle school teacher. Write math curriculum about integer factorization", "write the words 'hello' to texteditor", "find donal trump's wikipedia", "Make a reservation for 2 at 7pm at bistro vida in menlo park", "go to google docs"]
@@ -164,7 +160,7 @@ class RunTask:
         prev_cmd = ""
         query = "+".join(objective.split(" "))
         self._crawler.go_to_page("https://google.com")
-        
+
         try:
             while True:
                 browser_content = "\n".join(self._crawler.crawl())
@@ -178,11 +174,11 @@ class RunTask:
                     try:
                         response = self.evaluate_completion(objective, self._crawler.page.url, prev_cmd,browser_content)
                         break
-                    except openai.error.RateLimitError as e:
+                    except openai.RateLimitError as e:
                         print("Rate Limit Exceeded. Retrying in 5 seconds...")
                         time.sleep(5)
-                        
-							
+
+
                 print("Completion:" + response)
                 q = input("would you like to override completion?")
                 if len(q) > 0:
@@ -195,12 +191,12 @@ class RunTask:
                     try:
                         gpt_cmd = self.get_gpt_command(objective, self._crawler.page.url, prev_cmd, browser_content)
                         break
-                    except openai.error.RateLimitError as e:
+                    except openai.RateLimitError as e:
                         print(e)
                         print("Rate Limit Exceeded. Retrying in 5 seconds...")
                         time.sleep(5)
-                        
-                    
+
+
                 gpt_cmd = gpt_cmd.strip()
                 if len(gpt_cmd) > 0:
                     print("Suggested command: " + gpt_cmd)
@@ -209,12 +205,12 @@ class RunTask:
                     gpt_cmd = q
                 self.run_cmd(gpt_cmd, objective)
 
-                
-                
+
+
         except KeyboardInterrupt:
             print("\n[!] Ctrl+C detected, exiting gracefully.")
             exit(0)
-            
+
 
 
 if __name__ == "__main__":

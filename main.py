@@ -1,18 +1,19 @@
 from playwright.sync_api import sync_playwright
 import time
 from sys import argv, exit, platform
-import openai
+from openai import OpenAI
 import os
 import crawler
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 
 
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 class main():
     def __init__(self):
         file = open('action_prompt_template.txt', 'r', encoding='utf-8')
         self.prompt_template = file.read()
-        openai.api_key = os.getenv("OPENAI_API_KEY")
         self._crawler = crawler.Crawler()
         file = open('instructions_prompt.txt', 'r', encoding='utf-8')
         self.instructions = file.read()
@@ -41,18 +42,16 @@ class main():
         """
 
         print(message)
-        response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": message},
-                ],
-                temperature=0.5,
-                n=1,  # Assuming you want only one response
-                max_tokens=1000
-        )
+        response = client.chat.completions.create(model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": message},
+        ],
+        temperature=0.5,
+        n=1,  # Assuming you want only one response
+        max_tokens=1000)
         print(response)
-        w = response.choices[0]["message"]["content"]
+        w = response.choices[0].message.content
         file = open("output.txt", "w")
         file.write(str(w))
 
@@ -67,7 +66,7 @@ class main():
         browser_content = "\n".join(self._crawler.crawl())
         prompt = prompt.replace("$browser_content", browser_content[:7500])
         prompt = prompt.replace("$current_output", self.output)
-        
+
         self.messages = self.messages + [
                     {"role": "user", "content": prompt}
         ]
@@ -77,20 +76,18 @@ class main():
         print(prompt)
         while True:
             try:
-                response = openai.ChatCompletion.create(
-                model="gpt-4",
+                response = client.chat.completions.create(model="gpt-4",
                 messages=self.messages,
                 temperature=0.5,
                 n=1,  # Assuming you want only one response, not 3 as before
-                max_tokens=50
-                )
-                response = response.choices[0]["message"]["content"]
+                max_tokens=50)
+                response = response.choices[0].message.content
                 break
-            except openai.error.RateLimitError as e:
+            except openai.RateLimitError as e:
                 print("Rate Limit Exceeded. Retrying in 5 seconds...")
                 time.sleep(5)
-       
-       
+
+
         #overide
         if len(response) > 0:
             print("Suggested command: " + response)
@@ -100,7 +97,7 @@ class main():
         self.messages.append( {"role": "system", "content": response})
         return response
 
-    
+
     def run_cmd(self,cmd):
         if "COMPLETE STEP" not in cmd:
             self.prev_command = cmd
@@ -130,13 +127,13 @@ class main():
                 try:
                     response = self.write_output()
                     break
-                except openai.error.RateLimitError as e:
+                except openai.RateLimitError as e:
                     print("Rate Limit Exceeded. Retrying in 5 seconds...")
                     time.sleep(5)
-                return 
+            return 
         time.sleep(2)
 
-    
+
 
 
     def run(self):
